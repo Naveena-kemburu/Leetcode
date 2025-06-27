@@ -3,7 +3,7 @@ class Solution {
         int[] freq = new int[26];
         for (char c : s.toCharArray()) freq[c - 'a']++;
 
-        // Reduce search space to only characters appearing at least k times
+       
         List<Character> valid = new ArrayList<>();
         for (int i = 0; i < 26; i++) {
             if (freq[i] >= k) {
@@ -11,7 +11,6 @@ class Solution {
             }
         }
 
-        // BFS: Try all sequences up to length 7
         Queue<String> queue = new LinkedList<>();
         queue.add("");
         String res = "";
@@ -22,7 +21,6 @@ class Solution {
                 String next = curr + c;
                 if (isKSubsequence(s, next, k)) {
                     queue.add(next);
-                    // Update answer if longer or lexicographically larger
                     if (next.length() > res.length() || 
                        (next.length() == res.length() && next.compareTo(res) > 0)) {
                         res = next;
